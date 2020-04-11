@@ -1,22 +1,41 @@
-import React, { useState } from 'react'
-import './App.css'
-export default function App() {
+import React from 'react'
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+import Home from './component/Home'
+import Webboard from './component/Webboard'
+import ContactUs from './component/ContactUs'
+import Urlnotfound from './component/Urlnotfound'
 
-  const [data, setData] = useState([{ name: '' }]);
-
-  // function addData() {
-  //   console.log(data, ...data);
-  //   setData([...data, { value: Math.random() }]);
-  // }
-
-  function fullnameChange(e) {
-    setData([{ name: e.target.value }]);
-  }
-
+function App() {
   return (
-    <div>
-      <p>name : {data[0].name}</p>
-      <input type="text" value={data[0].name} onChange={fullnameChange} />
-    </div>
+    <BrowserRouter>
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Home Page</Link>
+          </li>
+          <li>
+            <Link to="/webboard">Webboard</Link>
+          </li>
+          <li>
+            <Link to="/ContactUs">ContactUs</Link>
+          </li>
+          <li>
+            <Link to="/Profile">Profile</Link>
+          </li>
+          <li>
+          <Link to="/Address">Address</Link>
+
+          </li>
+        </ul>
+      </div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/Webboard" component={Webboard} />
+        <Route exact path="/ContactUs" component={ContactUs} />
+        <Route component={Urlnotfound} />
+      </Switch>
+    </BrowserRouter >
   )
 }
+
+export default App
